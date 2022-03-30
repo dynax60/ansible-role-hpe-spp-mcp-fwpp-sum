@@ -1,0 +1,2 @@
+---
+repo_url: "http://downloads.linux.hpe.com/repo/mcp/centos/{{ ansible_distribution_major_version }}/$basearch/current"

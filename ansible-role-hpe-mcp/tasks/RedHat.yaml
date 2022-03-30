@@ -1,0 +1,20 @@
+---
+- name: add HPE-mcp repo
+  ansible.builtin.yum_repository:
+    name: HPE-mcp
+    description: HPE Software Delivery Repository for mcp
+    baseurl: "{{ repo_url }}"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "{{ repo_gpg_key }}"
+  tags: repo
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ pkg }}"
+    state: present
+  loop: "{{ hpe_mcp_packages }}"
+  loop_control:
+    loop_var: pkg
+  when: hpe_mcp_packages is defined
+  tags: packages
